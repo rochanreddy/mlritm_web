@@ -34,7 +34,7 @@ interface Testimonial {
 interface SectorData {
   name: string
   percentage: number
-  color: string
+  color: string // Hex color code
 }
 
 export default function PlacementsSection() {
@@ -111,15 +111,15 @@ export default function PlacementsSection() {
   ]
 
   const sectorData: SectorData[] = [
-    { name: "IT Services", percentage: 45, color: "bg-primary" },
-    { name: "Product Companies", percentage: 25, color: "bg-chart-1" },
-    { name: "Consulting", percentage: 15, color: "bg-chart-2" },
-    { name: "Core Engineering", percentage: 10, color: "bg-chart-3" },
-    { name: "Others", percentage: 5, color: "bg-chart-4" }
+    { name: "IT Services", percentage: 45, color: "#3B82F6" },
+    { name: "Product Companies", percentage: 25, color: "#10B981" },
+    { name: "Consulting", percentage: 15, color: "#8B5CF6" },
+    { name: "Core Engineering", percentage: 10, color: "#F97316" },
+    { name: "Others", percentage: 5, color: "#14B8A6" }
   ]
 
   // Animated bar that re-triggers on every viewport entry
-  const AnimatedBar = ({ percentage, className }: { percentage: number; className: string }) => {
+  const AnimatedBar = ({ percentage, className, style }: { percentage: number; className: string; style?: React.CSSProperties }) => {
     const ref = useRef<HTMLDivElement | null>(null)
     const isInView = useInView(ref, { once: false })
     const controls = useAnimation()
@@ -136,6 +136,7 @@ export default function PlacementsSection() {
       <motion.div
         ref={ref}
         className={className}
+        style={style}
         initial={{ width: "0%" }}
         animate={controls}
         transition={{ duration: 0.9, ease: "easeOut" }}
@@ -216,7 +217,8 @@ export default function PlacementsSection() {
                     <div className="w-full bg-secondary rounded-full h-2">
                       <AnimatedBar
                         percentage={sector.percentage}
-                        className={`h-2 rounded-full ${sector.color}`}
+                        className="h-2 rounded-full"
+                        style={{ backgroundColor: sector.color }}
                       />
                     </div>
                   </div>
@@ -230,17 +232,17 @@ export default function PlacementsSection() {
             <div className="bg-background rounded-lg p-6">
               <div className="space-y-4">
                 {[
-                  { year: 2024, pct: 94, color: "bg-primary" },
-                  { year: 2023, pct: 86, color: "bg-chart-1" },
-                  { year: 2022, pct: 82, color: "bg-chart-2" },
-                  { year: 2021, pct: 78, color: "bg-chart-3" },
-                  { year: 2020, pct: 75, color: "bg-chart-4" },
+                  { year: 2024, pct: 94, color: "#2563EB" },
+                  { year: 2023, pct: 86, color: "#059669" },
+                  { year: 2022, pct: 82, color: "#7C3AED" },
+                  { year: 2021, pct: 78, color: "#EA580C" },
+                  { year: 2020, pct: 75, color: "#0D9488" },
                 ].map((row) => (
                   <div key={row.year} className="flex justify-between items-center">
                     <span>{row.year}</span>
                     <div className="flex items-center gap-2">
                       <div className="w-32 bg-secondary rounded-full h-2">
-                        <AnimatedBar percentage={row.pct} className={`h-2 rounded-full ${row.color}`} />
+                        <AnimatedBar percentage={row.pct} className="h-2 rounded-full" style={{ backgroundColor: row.color }} />
                       </div>
                       <span className="text-sm font-medium">{row.pct}%</span>
                     </div>

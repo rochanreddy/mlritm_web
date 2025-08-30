@@ -248,7 +248,24 @@ export default function NavigationHeader() {
                   transition={{ duration: 0.6, delay: 0.2, ease: easeOut }}
       >
         <div className="container mx-auto px-4 relative z-10">
-          <div className="flex items-center justify-end h-14">
+          <div className="flex items-center justify-between h-14">
+            {/* Left Section - EAMCET Code Button */}
+            <motion.div 
+              className="flex items-center"
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: easeOut }}
+            >
+              <motion.a
+                href="#"
+                className="flex items-center space-x-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-red-400/30"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>EAMCET CODE: MLRS</span>
+              </motion.a>
+            </motion.div>
+
             {/* Right Section - Enhanced Quick Links */}
             <motion.div 
               className="hidden md:flex items-center space-x-8"
@@ -567,6 +584,9 @@ export default function NavigationHeader() {
           )}
         </AnimatePresence>
       </motion.div>
+
+      {/* Red border separator */}
+      <div className="h-1 bg-gradient-to-r from-red-500 via-red-600 to-red-500 shadow-sm"></div>
 
       {/* Ticker directly under header bars */}
       <NotificationTicker className="bg-white/95" />

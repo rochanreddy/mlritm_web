@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -60,25 +60,29 @@ const facilities = [
     icon: Users,
     title: "Student Clubs",
     description: "50+ active clubs and societies covering diverse interests",
-    count: "50+"
+    count: "50+",
+    image: "/images/clubs.jpeg"
   },
   {
     icon: Trophy,
     title: "Sports Facilities",
     description: "State-of-the-art gymnasium, courts, and athletic facilities",
-    count: "15+"
+    count: "15+",
+    image: "/images/gymkhana.jpg"
   },
   {
     icon: Music,
     title: "Cultural Activities",
     description: "Music rooms, auditoriums, and performance spaces",
-    count: "10+"
+    count: "10+",
+    image: "/images/auditorium.jpg"
   },
   {
     icon: BookOpen,
     title: "Academic Support",
     description: "Tutoring centers, study groups, and mentorship programs",
-    count: "24/7"
+    count: "24/7",
+    image: "/images/library.jpg"
   }
 ]
 
@@ -112,6 +116,15 @@ const testimonials = [
 export default function StudentLifeSection({ className }: StudentLifeSectionProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+
+  // Auto-advance testimonials every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [testimonials.length])
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % campusActivities.length)
@@ -198,9 +211,9 @@ export default function StudentLifeSection({ className }: StudentLifeSectionProp
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-2xl">
+          <div className="relative overflow-hidden">
             <motion.div
-              className="flex"
+              className="flex w-full"
               animate={{ x: -currentSlide * 100 + "%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               drag="x"
@@ -212,13 +225,13 @@ export default function StudentLifeSection({ className }: StudentLifeSectionProp
             >
               {campusActivities.map((activity) => (
                 <div key={activity.id} className="w-full flex-shrink-0">
-                  <Card className="border-0 bg-card shadow-lg">
+                  <Card className="border-0 bg-card shadow-lg overflow-hidden rounded-none">
                     <div className="grid lg:grid-cols-2 gap-0">
-                      <div className="relative h-64 lg:h-96 bg-muted rounded-l-2xl overflow-hidden">
+                      <div className="relative h-64 lg:h-96 bg-muted overflow-hidden">
                         <img
                           src={activity.image}
                           alt={activity.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover object-center"
                         />
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
                         <div className="absolute bottom-4 left-4">
@@ -299,22 +312,30 @@ export default function StudentLifeSection({ className }: StudentLifeSectionProp
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="h-full bg-card hover:shadow-lg transition-all duration-300 group">
-                    <CardContent className="p-6 text-center">
-                      <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-2xl mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                  <Card className="h-full bg-card hover:shadow-lg transition-all duration-300 group overflow-hidden relative">
+                    {/* Background Image */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-70 transition-opacity duration-300"
+                      style={{ backgroundImage: `url(${facility.image})` }}
+                    />
+                    {/* Dark overlay for better text readability */}
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
+                    
+                    <CardContent className="p-6 text-center relative z-10">
+                      <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/20 backdrop-blur-sm rounded-2xl mb-4 group-hover:bg-primary/30 transition-colors duration-300 border border-primary/30">
                         <facility.icon className="h-7 w-7 text-primary" />
                       </div>
-                      <div className="text-2xl font-bold text-primary mb-2">
+                      <div className="text-3xl font-bold text-primary mb-2 drop-shadow-lg">
                         {match ? (
                           <Counter from={0} to={numericValue} duration={2} delay={0.1} suffix={suffix} />
                         ) : (
                           facility.count
                         )}
                       </div>
-                      <h4 className="font-heading font-semibold mb-3">
+                      <h4 className="font-heading font-bold mb-3 text-black text-lg drop-shadow-lg">
                         {facility.title}
                       </h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
+                      <p className="text-sm text-black font-semibold leading-relaxed drop-shadow-md">
                         {facility.description}
                       </p>
                     </CardContent>

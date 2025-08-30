@@ -4,7 +4,6 @@ import AboutSection from "@/components/AboutSection"
 import AcademicsSection from "@/components/AcademicsSection"
 import StudentLifeSection from "@/components/StudentLifeSection"
 import PlacementsSection from "@/components/PlacementsSection"
-import ResearchSection from "@/components/ResearchSection"
 import CampusSection from "@/components/CampusSection"
 import ContactFooter from "@/components/ContactFooter"
 // import AboutSection from "@/components/AboutSection"
@@ -60,18 +59,12 @@ export default function HomePage() {
           </ScrollAnimation>
 
           <ScrollAnimation delay={0.7}>
-            <div id="research">
-              <ResearchSection />
-            </div>
-          </ScrollAnimation>
-
-          <ScrollAnimation delay={0.8}>
             <div id="campus">
               <CampusSection />
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation delay={0.9}>
+          <ScrollAnimation delay={0.8}>
             <div id="contact">
               <ContactFooter />
             </div>

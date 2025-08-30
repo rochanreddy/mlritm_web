@@ -92,7 +92,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "classrooms",
         name: "Smart Classrooms",
-        image: "/api/placeholder/600/400",
+        image: "/images/smartclassroom.jpg",
         description: "Technology-enabled learning environments with modern audio-visual equipment",
         features: ["Digital Projectors", "Interactive Whiteboards", "AC & Comfortable Seating", "High-Speed Internet"],
         capacity: "60-80 Students",
@@ -101,7 +101,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "auditorium",
         name: "Main Auditorium",
-        image: "/api/placeholder/600/400",
+        image: "/images/auditorium.jpg",
         description: "Grand auditorium for seminars, conferences, and cultural events",
         features: ["Advanced Sound System", "LED Display", "Recording Facilities", "VIP Seating"],
         capacity: "1,200 Seats",
@@ -110,7 +110,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "seminar-halls",
         name: "Seminar Halls",
-        image: "/api/placeholder/600/400",
+        image: "/images/seminar-hall.jpg",
         description: "Flexible spaces for workshops, presentations, and group discussions",
         features: ["Modular Seating", "Presentation Equipment", "Video Conferencing", "Acoustic Design"],
         capacity: "50-150 Students",
@@ -127,7 +127,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "computer-labs",
         name: "Computer Laboratories",
-        image: "/api/placeholder/600/400",
+        image: "/images/computerlab.jpg",
         description: "High-performance computing labs with latest software and hardware",
         features: ["Latest Workstations", "Licensed Software", "High-Speed Network", "24/7 Access"],
         capacity: "40-60 Systems per Lab",
@@ -136,7 +136,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "engineering-labs",
         name: "Engineering Labs",
-        image: "/api/placeholder/600/400",
+        image: "/images/engineeringlab.jpeg",
         description: "Specialized laboratories for hands-on engineering experiments",
         features: ["Modern Equipment", "Safety Systems", "Research Facilities", "Industry Standards"],
         capacity: "20-30 Students",
@@ -145,7 +145,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "research-centers",
         name: "Research Centers",
-        image: "/api/placeholder/600/400",
+        image: "/images/researchlab.jpg",
         description: "Dedicated spaces for advanced research and innovation projects",
         features: ["Specialized Equipment", "Clean Rooms", "Data Centers", "Collaboration Spaces"],
         capacity: "Research Teams",
@@ -162,7 +162,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "central-library",
         name: "Central Library",
-        image: "/api/placeholder/600/400",
+        image: "/images/library.jpg",
         description: "Modern library with extensive collection and digital resources",
         features: ["50,000+ Books", "Digital Library", "Reading Rooms", "Silent Study Areas"],
         capacity: "500+ Seating",
@@ -171,7 +171,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "digital-library",
         name: "Digital Library",
-        image: "/api/placeholder/600/400",
+        image: "/images/library.jpg",
         description: "Access to online databases, e-books, and digital resources",
         features: ["E-Journals", "Online Databases", "Digital Collections", "Remote Access"],
         capacity: "100+ Terminals",
@@ -180,7 +180,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "study-spaces",
         name: "Study Spaces",
-        image: "/api/placeholder/600/400",
+        image: "/images/campus.jpg",
         description: "Quiet environments for individual and group study sessions",
         features: ["Group Study Rooms", "Silent Zones", "Discussion Areas", "24/7 Access"],
         capacity: "Various Configurations",
@@ -197,7 +197,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "boys-hostels",
         name: "Boys Hostels",
-        image: "/api/placeholder/600/400",
+        image: "/images/boyshostel.jpg",
         description: "Well-furnished accommodation with modern amenities",
         features: ["Furnished Rooms", "Wi-Fi Connectivity", "24/7 Security", "Common Areas"],
         capacity: "1,500+ Students",
@@ -206,7 +206,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "girls-hostels",
         name: "Girls Hostels",
-        image: "/api/placeholder/600/400",
+        image: "/images/girlshostel.jpg",
         description: "Safe and comfortable residential facilities for female students",
         features: ["Secure Environment", "Modern Facilities", "Recreation Rooms", "Study Areas"],
         capacity: "1,000+ Students",
@@ -215,7 +215,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "guest-house",
         name: "Guest House",
-        image: "/api/placeholder/600/400",
+        image: "/images/boyshostel.jpg",
         description: "Accommodation facility for visiting faculty and guests",
         features: ["AC Rooms", "Dining Facility", "Conference Room", "Parking"],
         capacity: "20 Rooms",
@@ -232,7 +232,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "sports-complex",
         name: "Sports Complex",
-        image: "/api/placeholder/600/400",
+        image: "/images/sports.jpg",
         description: "Multi-sport facility with indoor and outdoor courts",
         features: ["Basketball Courts", "Badminton Courts", "Table Tennis", "Gymnasium"],
         capacity: "Multiple Sports",
@@ -241,7 +241,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "playground",
         name: "Sports Ground",
-        image: "/api/placeholder/600/400",
+        image: "/images/ground.jpg",
         description: "Large outdoor space for cricket, football, and athletics",
         features: ["Cricket Ground", "Football Field", "Athletics Track", "Spectator Stands"],
         capacity: "Multiple Teams",
@@ -250,7 +250,7 @@ const facilityCategories: FacilityCategory[] = [
       {
         id: "cafeteria",
         name: "Food Court & Cafeteria",
-        image: "/api/placeholder/600/400",
+        image: "/images/cateen.jpeg",
         description: "Multiple dining options with variety of cuisines",
         features: ["Multiple Cuisines", "Hygienic Preparation", "Spacious Seating", "Affordable Pricing"],
         capacity: "800+ Seating",
@@ -360,11 +360,11 @@ export default function CampusSection() {
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                     >
                       <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300 overflow-hidden">
-                        <div className="relative">
+                        <div className="relative overflow-hidden">
                           <img
                             src={facility.image}
                             alt={facility.name}
-                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-48 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                           />
                           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                             <Button
