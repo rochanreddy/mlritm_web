@@ -77,14 +77,14 @@ export default function NavigationHeader() {
   };
 
   const mainNavLinks: NavItem[] = [
-    { name: "Home", href: "#home" },
+    { name: "Home", href: "/" },
     { 
       name: "About", 
       href: "#about",
       children: [
-        { name: "Vision and Mission", href: "#about-vision-mission" },
-        { name: "Management", href: "#about-management" },
-        { name: "Director's Desk", href: "#about-directors-desk" },
+        { name: "Vision and Mission", href: "/vision-mission" },
+        { name: "Management", href: "/management" },
+        { name: "Director's Desk", href: "/directors-desk" },
         { name: "Principal's Desk", href: "#about-principals-desk" },
         { name: "Governing Body", href: "#about-governing-body" },
         { name: "Organization Chart", href: "#about-organization-chart" },
@@ -105,17 +105,17 @@ export default function NavigationHeader() {
       name: "Departments",
       href: "#departments",
       children: [
-        { name: "Civil Engineering", href: "#dept-civil" },
-        { name: "Computer Science & Engineering", href: "#dept-cse" },
-        { name: "Electronics & Communication Engineering", href: "#dept-ece" },
-        { name: "Information Technology", href: "#dept-it" },
-        { name: "Mechanical Engineering", href: "#dept-mech" },
-        { name: "Freshman Engineering Department", href: "#dept-freshman" },
-        { name: "Electrical and Electronics Engineering", href: "#dept-eee" },
-        { name: "Computer Science & Information Technology", href: "#dept-csit" },
-        { name: "Computer Science & Engineering (Cyber Security)", href: "#dept-cse-cs" },
-        { name: "Computer Science and Engineering (Data Science)", href: "#dept-cse-ds" },
-        { name: "Computer Science and Engineering(AI & ML)", href: "#dept-cse-aiml" },
+        { name: "Civil Engineering", href: "/civil-engineering" },
+        { name: "Computer Science & Engineering", href: "/computer-science-engineering" },
+        { name: "Electronics & Communication Engineering", href: "/electronics-communication-engineering" },
+        { name: "Information Technology", href: "/information-technology" },
+        { name: "Mechanical Engineering", href: "/mechanical-engineering" },
+        { name: "Freshman Engineering Department", href: "/freshman-engineering" },
+        { name: "Electrical and Electronics Engineering", href: "/electrical-electronics-engineering" },
+        { name: "Computer Science & Information Technology", href: "/computer-science-information-technology" },
+        { name: "Computer Science & Engineering (Cyber Security)", href: "/computer-science-engineering-cybersecurity" },
+        { name: "Computer Science and Engineering (Data Science)", href: "/computer-science-engineering-data-science" },
+        { name: "Computer Science and Engineering(AI & ML)", href: "/computer-science-engineering-ai-ml" },
         {
           name: "P.G. Programmes",
           href: "#pg-programmes",
@@ -198,6 +198,12 @@ export default function NavigationHeader() {
   const handleNavLinkClick = (href: string) => {
     // Close mobile menu if open
     setIsMobileMenuOpen(false);
+    
+    // Handle external page links
+    if (href.startsWith('/')) {
+      window.location.href = href;
+      return;
+    }
     
     // Smooth scroll to the target section
     if (href.startsWith('#')) {

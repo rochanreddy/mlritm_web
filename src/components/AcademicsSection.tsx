@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { AnimatePresence } from "framer-motion";
+import DepartmentDetail from "./DepartmentDetail";
 import { 
   Code, 
   Cpu,
@@ -146,8 +148,47 @@ const categoryLabels = {
   doctoral: "Doctoral Programs"
 };
 
+// Department details for detailed view
+const departmentDetails = {
+  civil: {
+    id: "civil",
+    name: "Civil Engineering Department",
+    image: "/images/departments/civil.jpg",
+    description: "The Civil Engineering Department at MLRITM is committed to providing world-class education in infrastructure development, construction technology, and sustainable engineering practices. Our department combines theoretical knowledge with practical applications, preparing students for leadership roles in the construction and infrastructure industry. We focus on modern construction methods, environmental sustainability, and innovative engineering solutions that address real-world challenges.",
+    programs: [
+      "B.Tech in Civil Engineering (4 years)",
+      "M.Tech in Structural Engineering (2 years)",
+      "M.Tech in Environmental Engineering (2 years)",
+      "Ph.D in Civil Engineering (Research)"
+    ],
+    highlights: [
+      "State-of-the-art laboratories with modern equipment",
+      "Industry partnerships with leading construction companies",
+      "Focus on sustainable and green building technologies",
+      "Strong emphasis on practical training and internships",
+      "Expert faculty with industry and research experience",
+      "Advanced software training (AutoCAD, STAAD Pro, ETABS)",
+      "Regular industry visits and expert lectures",
+      "Research opportunities in structural engineering and environmental science"
+    ],
+    faculty: 25,
+    students: 400,
+    achievements: [
+      "NBA Accredited Program (National Board of Accreditation)",
+      "100% placement record for the past 5 years",
+      "Students placed in top companies like L&T, Tata Projects, HCC",
+      "Research publications in international journals",
+      "Industry-sponsored research projects worth ₹50+ Lakhs",
+      "Winner of national-level technical competitions",
+      "Active participation in professional bodies like IEI and ICI",
+      "Collaboration with international universities for research"
+    ]
+  }
+};
+
 export default function AcademicsSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(null);
 
   const filteredPrograms = selectedCategory === "all" 
     ? programs 
@@ -158,6 +199,12 @@ export default function AcademicsSection() {
     { id: "undergraduate", label: "BTech Courses" },
     { id: "postgraduate", label: "PG Courses" }
   ];
+
+  const handleDepartmentClick = (programId: string) => {
+    if (programId === "civil") {
+      setSelectedDepartment(programId);
+    }
+  };
 
   return (
     <section className="bg-background py-16 sm:py-20">
@@ -194,6 +241,7 @@ export default function AcademicsSection() {
               <div 
                 key={program.id}
                 className="group relative bg-card border border-border rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 cursor-pointer"
+                onClick={() => handleDepartmentClick(program.id)}
               >
                 {/* Program Image */}
                 <div className="relative h-32 overflow-hidden">
@@ -264,6 +312,16 @@ export default function AcademicsSection() {
             </div>
           </div>
         </div>
+
+        {/* Department Detail Modal */}
+        <AnimatePresence>
+          {selectedDepartment && (
+            <DepartmentDetail
+              department={departmentDetails[selectedDepartment as keyof typeof departmentDetails]}
+              onClose={() => setSelectedDepartment(null)}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
